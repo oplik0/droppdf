@@ -15,6 +15,8 @@ urlpatterns = [
 
         path('privacy/', view=privacy, name="privacy"),
 
+        path('terms-of-service/', view=terms, name="terms"),
+
         path('download/drop-pdf/<filename>', view=download_static,
             name="download_static"),
 

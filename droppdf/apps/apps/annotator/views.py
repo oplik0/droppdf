@@ -217,6 +217,10 @@ def privacy(request):
     return render(request, 'privacy.html')
 
 
+def terms(request):
+    return render(request, 'terms.html')
+
+
 def download_static(request, filename):
     '''to download documents from docdrop-v1 url format'''
 
