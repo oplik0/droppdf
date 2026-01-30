@@ -1,4 +1,7 @@
 # Use Python 3.9 as base image
+# Note: Tested Python 3.10-3.13, but pinned dependencies (especially celery==5.0.5 
+# and cryptography==3.4.6) have compatibility issues with newer Python/pip versions.
+# Upgrading Python would require updating dependencies first.
 FROM python:3.9-slim
 
 # Set environment variables
@@ -24,6 +27,9 @@ RUN apt-get update && apt-get install -y \
     ghostscript \
     img2pdf \
     libpq-dev \
+    # XML processing libraries (for lxml)
+    libxml2-dev \
+    libxslt1-dev \
     # Build tools
     gcc \
     g++ \
