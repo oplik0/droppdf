@@ -1,0 +1,73 @@
+# Git
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.installed.cfg
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+.hypothesis/
+
+# Documentation
+_docs/
+*.md
+README.md
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Environment
+.env
+.env.*
+
+# Uploaded files
+upload/static/drop-pdf/*
+/static/drop-pdf/*
+static/fingerprints/*
+upload/static/fingerprints/*
+
+# Build artifacts
+build/
+dist/
+*.spec
+
+# Celery
+celerybeat-schedule
+
+# Other
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints
