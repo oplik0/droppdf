@@ -34,8 +34,8 @@ RUN apt-get update && apt-get install -y \
 # Copy requirements file
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies (including gunicorn for production)
+RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
 # Copy application code
 COPY . .
@@ -43,11 +43,19 @@ COPY . .
 # Create directories for static files and uploads
 RUN mkdir -p /app/static /app/upload/static/drop-pdf /app/static/fingerprints /app/upload/static/fingerprints
 
+# Create a non-root user to run the application
+RUN useradd -m -u 1000 droppdf && \
+    chown -R droppdf:droppdf /app
+
+# Switch to non-root user
+USER droppdf
+
 # Expose port for Django
 EXPOSE 8000
 
 # Set the working directory to where manage.py is located
 WORKDIR /app/droppdf
 
-# Default command - can be overridden in docker-compose or at runtime
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Default command - uses gunicorn for production
+# Can be overridden for development: docker run ... python manage.py runserver 0.0.0.0:8000
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "droppdf.wsgi:application"]
